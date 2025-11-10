@@ -23,7 +23,7 @@ const Footer = () => {
                     <div className="mp-footer-main">
                         <div className="mp-footer-column brand">
                             <a href="#home" className="mp-footer-logo">
-                               <img src={logo}/>
+                               <img src={logo}  alt="Company logo" />
                                
                             </a>
                             <p>Crafting digital excellence, one pixel at a time.</p>

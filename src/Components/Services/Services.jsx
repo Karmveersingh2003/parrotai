@@ -65,13 +65,9 @@ const ServicesPage = () => {
     { number: "02", title: "Design & Develop", description: "Our creatives and engineers collaborate to bring the vision to life, focusing on meticulous design, clean code, and intuitive user experience." },
     { number: "03", title: "Deliver & Grow", description: "We launch your project and continue to partner with you, analyzing performance and identifying new opportunities for growth and refinement." }
   ];
-  const processDatas = [
-    { number: "01", title: "Discover & Define", description: "We begin with a deep dive into your world, understanding your vision, audience, and objectives to establish a clear roadmap for success." },
-    { number: "02", title: "Design & Develop", description: "Our creatives and engineers collaborate to bring the vision to life, focusing on meticulous design, clean code, and intuitive user experience." },
-    { number: "03", title: "Deliver & Grow", description: "We launch your project and continue to partner with you, analyzing performance and identifying new opportunities for growth and refinement." }
-  ];
+
   // --- ANIMATION HOOKS ---
-  const [introRef, isIntroVisible] = useScrollAnimation({ threshold: 0.3 });
+
   const [showcaseRef, isShowcaseVisible] = useScrollAnimation({ threshold: 0.1 });
   const [processRef, isProcessVisible] = useScrollAnimation({ threshold: 0.2 });
   const [ctaRef, isCtaVisible] = useScrollAnimation({ threshold: 0.4 });

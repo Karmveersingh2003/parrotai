@@ -103,7 +103,7 @@ const FlavorCard = ({ title, description, imageSrc }) => {
             <div className="flavor-text-content">
                 <h3 className="flavor-card-title">{title}</h3>
                 <p className="flavor-card-description">{description}</p>
-                <a href="#menu" className="flavor-card-link">View Dish <span>&rarr;</span></a>
+                <a href="#tech" className="flavor-card-link">View tech <span>&rarr;</span></a>
             </div>
         </div>
     );
@@ -177,7 +177,7 @@ const HeritageSection = () => {
     What started as a small software lab has evolved into a trusted leader in digital innovation, built on a foundation of creativity, 
     collaboration, and a relentless drive for excellence. Each solution we deliver is a reflection of our history and a step toward a smarter, more connected future.
   </p>
-  <a href="" className="heritage-button">
+  <a href="/about" className="heritage-button">
     Discover Our Journey
   </a>
 </div>
@@ -185,7 +185,7 @@ const HeritageSection = () => {
                 <div className="heritage-image-collage">
                     <div className="heritage-image-parallax-wrapper" ref={parallaxRef}>
                         <img src={restaurantImageUrl} alt="Elegant restaurant interior" className="heritage-main-image" />
-                        <img src={chefImageUrl} alt="Chef preparing a dish" className="heritage-secondary-image" />
+                        <img src={chefImageUrl} alt=" preparing " className="heritage-secondary-image" />
                         <div className="heritage-badge">
                             <div className="heritage-badge-text">Since</div>
                             <div className="heritage-badge-year">2025</div>
