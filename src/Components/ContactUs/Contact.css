@@ -1,0 +1,280 @@
+/*
+====================================================================================
+--- "MASTERPIECE" CONTACT PAGE STYLES (FINAL & FIXED) ---
+====================================================================================
+*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap');
+
+:root {
+  --color-elegant-bg: #f4f1ea;
+  --color-elegant-text-dark: #252525;
+  --color-elegant-text-light: #6e6e6e;
+  --color-elegant-accent: #a4826d;
+  --color-elegant-border: #d3c9be;
+  --font-elegant-body: 'Poppins', sans-serif;
+  --font-elegant-display: 'Playfair Display', serif;
+  --transition-elegant-slow: 1s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-elegant-fast: 0.4s ease;
+}
+
+.contact-final-page {
+  background-color: var(--color-elegant-bg);
+  color: var(--color-elegant-text-light);
+  font-family: var(--font-elegant-body);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+/* --- Cursor Spotlight --- */
+.contact-final-page::before {
+  content: '';
+  position: fixed;
+  top: var(--mouse-y);
+  left: var(--mouse-x);
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(164, 130, 109, 0.1), transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+@media (pointer: coarse) { .contact-final-page::before { display: none; } }
+
+/* --- Main Layout --- */
+.contact-container-final {
+  max-width: 1300px;
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 100px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Left Side: Intro Panel --- */
+.contact-intro-panel-final {
+  opacity: 0;
+  animation: slide-in-left-final 1.2s var(--transition-elegant-slow) forwards;
+}
+@keyframes slide-in-left-final {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.contact-subtitle-final {
+  color: var(--color-elegant-accent);
+  font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.contact-title-final {
+  font-family: var(--font-elegant-display);
+  color: var(--color-elegant-text-dark);
+  font-size: clamp(2.8rem, 6vw, 4rem);
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+.contact-description-final { font-size: 1.1rem; line-height: 1.8; margin-bottom: 40px; }
+.contact-info-wrapper-final { display: flex; flex-direction: column; gap: 32px; }
+.contact-info-item-final h3 {
+  font-family: var(--font-elegant-display);
+  color: var(--color-elegant-text-dark);
+  font-size: 1.2rem; margin-bottom: 8px;
+}
+.contact-info-item-final a {
+  color: var(--color-elegant-accent);
+  font-weight: 600; text-decoration: none;
+  position: relative;
+}
+.contact-info-item-final a::after {
+  content: ''; position: absolute;
+  left: 0; bottom: -2px; width: 100%;
+  height: 1px; background-color: var(--color-elegant-accent);
+  transform: scaleX(0); transform-origin: right;
+  transition: transform 0.4s ease;
+}
+.contact-info-item-final a:hover::after { transform: scaleX(1); transform-origin: left; }
+
+/* --- Right Side: Form Panel --- */
+.contact-form-panel-final { position: relative; }
+.contact-form-final, .contact-success-message-final {
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.contact-form-final {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 40px 32px;
+  opacity: 1; transform: scale(1);
+}
+.form-field-final, .form-field-checkbox, .contact-submit-button-final {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slide-up-fade-in-final 1s var(--transition-elegant-slow) forwards;
+}
+@keyframes slide-up-fade-in-final {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.form-field-final { position: relative; }
+.form-field-final:nth-of-type(8) { grid-column: 1 / -1; }
+.form-field-checkbox, .contact-submit-button-final { grid-column: 1 / -1; }
+
+.form-field-final input, .form-field-final textarea, .form-field-final select {
+  width: 100%; padding: 12px 0; background: transparent; border: none;
+  border-bottom: 1px solid var(--color-elegant-border);
+  color: var(--color-elegant-text-dark); font-family: var(--font-elegant-body);
+  font-size: 1rem; outline: none; position: relative; z-index: 1;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+.form-field-final textarea { resize: vertical; }
+.form-field-final label {
+  position: absolute; top: 12px; left: 0;
+  pointer-events: none; color: var(--color-elegant-text-light);
+  transition: top 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+  z-index: 2; /* ** THE FIX PART 1: Ensure label is always above the input field */
+}
+.form-field-final select {
+    cursor: pointer;
+    padding-right: 20px; /* ** THE FIX PART 2: Add space for the custom arrow */
+}
+
+/* ** THE FIX PART 3: Correctly handle the floating label for the select element ** */
+.form-field-final input:focus + label, 
+.form-field-final input:not(:placeholder-shown) + label,
+.form-field-final textarea:focus + label, 
+.form-field-final textarea:not(:placeholder-shown) + label,
+.form-field-final select:focus + label,
+.form-field-final select:valid + label {
+  top: -16px;
+  font-size: 0.8rem;
+  color: var(--color-elegant-accent);
+}
+/* This handles the initial "Select an option" state */
+.form-field-final select:required:invalid {
+  color: var(--color-elegant-text-light);
+}
+
+.form-field-final::after { /* Underline animation */
+  content: ''; position: absolute; bottom: 0; left: 0;
+  height: 2px; width: 100%; background-color: var(--color-elegant-accent);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+}
+/* ** THE FIX PART 4: Add custom arrow ONLY to fields containing a select element ** */
+.form-field-final:has(select)::before {
+  content: '';
+  position: absolute;
+  right: 5px;
+  top: 15px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid var(--color-elegant-text-light);
+  border-right: 2px solid var(--color-elegant-text-light);
+  transform: rotate(45deg);
+  pointer-events: none;
+  z-index: 2;
+  transition: border-color 0.3s ease;
+}
+.form-field-final:has(select:focus)::before {
+    border-color: var(--color-elegant-accent);
+}
+
+.form-field-final input:focus ~ ::after, 
+.form-field-final textarea:focus ~ ::after, 
+.form-field-final select:focus ~ ::after {
+  transform: scaleX(1);
+}
+
+/* --- Checkbox Styling --- */
+.form-field-checkbox {
+    display: flex; align-items: flex-start; gap: 12px; text-align: left;
+}
+.form-field-checkbox input[type="checkbox"] {
+    -webkit-appearance: none; appearance: none;
+    background-color: transparent; margin: 0;
+    font: inherit; color: currentColor;
+    width: 1.15em; height: 1.15em;
+    border: 2px solid var(--color-elegant-accent);
+    border-radius: 4px;
+    transform: translateY(0.2em);
+    flex-shrink: 0;
+    cursor: pointer;
+    display: grid; place-content: center;
+}
+.form-field-checkbox input[type="checkbox"]::before {
+    content: ""; width: 0.65em; height: 0.65em;
+    transform: scale(0); transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--color-elegant-accent);
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+.form-field-checkbox input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+.form-field-checkbox label { font-size: 0.9rem; line-height: 1.6; }
+.form-field-checkbox label a { color: var(--color-elegant-accent); text-decoration: underline; }
+
+/* --- Submit Button & Success Message --- */
+.contact-submit-button-final {
+  background-color: var(--color-elegant-accent); color: white;
+  padding: 18px 36px; border-radius: 50px; border: none;
+  font-weight: 600; font-size: 1rem; cursor: pointer;
+  transition: transform var(--transition-elegant-fast), box-shadow var(--transition-elegant-fast);
+  box-shadow: 0 10px 20px -10px var(--color-elegant-accent);
+  justify-self: start;
+}
+.contact-submit-button-final:hover { transform: translateY(-5px); box-shadow: 0 15px 30px -10px var(--color-elegant-accent); }
+.contact-success-message-final {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center; opacity: 0; transform: scale(1.1); pointer-events: none;
+}
+.success-icon-final {
+  width: 80px; height: 80px; background-color: var(--color-elegant-accent);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  margin-bottom: 24px; animation: pop-in-final 0.5s var(--transition-elegant-slow) 0.5s forwards;
+  transform: scale(0);
+}
+@keyframes pop-in-final { to { transform: scale(1); } }
+.success-icon-final svg { width: 40px; height: 40px; fill: white; }
+.contact-success-message-final h2 { font-family: var(--font-elegant-display); color: var(--color-elegant-text-dark); font-size: 2.5rem; }
+.contact-success-message-final p { margin-top: 8px; font-size: 1.1rem; }
+
+/* --- The Transformation on Submit --- */
+.contact-form-panel-final.submitted .contact-form-final {
+  opacity: 0; transform: scale(0.9); pointer-events: none;
+}
+.contact-form-panel-final.submitted .contact-success-message-final {
+  opacity: 1; transform: scale(1); pointer-events: all; transition-delay: 0.3s;
+}
+
+/*
+====================================================================================
+--- RESPONSIVE DESIGN FOR ALL DEVICES ---
+====================================================================================
+*/
+@media (max-width: 992px) {
+  .contact-container-final { grid-template-columns: 1fr; gap: 80px; }
+  .contact-intro-panel-final { text-align: center; }
+  .contact-info-wrapper-final { flex-direction: row; justify-content: center; gap: 60px; }
+  .contact-submit-button-final { justify-self: center; }
+}
+
+@media (max-width: 768px) {
+  .contact-final-page { padding: 80px 0; }
+  .contact-container-final { gap: 60px; width: 95%; }
+  .contact-form-final { grid-template-columns: 1fr; gap: 40px; }
+  .contact-info-wrapper-final { flex-direction: column; gap: 32px; }
+}
+
+@media (min-width: 1921px) {
+  .contact-container-final { max-width: 1600px; gap: 120px; }
+  .contact-title-final { font-size: 5rem; }
+  .contact-description-final { font-size: 1.25rem; }
+  .form-field-final input, .form-field-final textarea, .form-field-final select { font-size: 1.1rem; }
+}

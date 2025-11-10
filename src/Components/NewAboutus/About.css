@@ -1,0 +1,352 @@
+/*
+====================================================================================
+--- ADVANCED & STUNNING "ABOUT US" PAGE STYLES ---
+====================================================================================
+*/
+
+:root {
+  --color-elegant-bg: #f4f1ea;
+  --color-elegant-text-dark: #252525;
+  --color-elegant-text-light: #6e6e6e;
+  --color-elegant-accent: #a4826d;
+  --color-elegant-bg-alt: #ffffff;
+  --color-elegant-border: #e0dace;
+
+  --font-elegant-body: 'Poppins', sans-serif;
+  --font-elegant-display: 'Playfair Display', serif;
+  
+  --transition-elegant-slow: 1s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-elegant-fast: 0.4s ease;
+}
+
+.advanced-about-page {
+  background-color: var(--color-elegant-bg);
+  color: var(--color-elegant-text-light);
+  font-family: var(--font-elegant-body);
+  overflow-x: hidden;
+}
+
+/* --- Cursor Light Effect --- */
+#cursor-light {
+  position: fixed;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(164, 130, 109, 0.08), transparent 60%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 100;
+  transition: opacity 0.3s;
+}
+
+/* --- General Section & Container Styling --- */
+.adv-container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
+.adv-subtitle {
+  color: var(--color-elegant-accent);
+  font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase; margin-bottom: 16px;
+  opacity: 0; transform: translateY(20px);
+  transition: 0.8s var(--transition-elegant-slow);
+}
+.adv-section-title {
+  font-family: var(--font-elegant-display);
+  color: var(--color-elegant-text-dark);
+  font-size: clamp(2.5rem, 5vw, 3.5rem); line-height: 1.2;
+  margin-bottom: 80px; text-align: center;
+  opacity: 0; transform: translateY(20px);
+  transition: 0.8s var(--transition-elegant-slow) 0.2s;
+}
+.is-visible .adv-subtitle,
+.is-visible .adv-section-title { opacity: 1; transform: translateY(0); }
+
+/* --- Section 1: Introduction --- */
+.adv-intro-section {
+  min-height: 80vh;
+  display: flex; align-items: center; text-align: center;
+  padding: 120px 0;
+}
+.adv-main-title {
+  font-family: var(--font-elegant-display);
+  color: var(--color-elegant-text-dark);
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 1.1;
+}
+/* Staggered Character Animation */
+.adv-main-title .char {
+  display: inline-block;
+  opacity: 0; transform: translateY(100%);
+  transition: 1s var(--transition-elegant-slow);
+}
+.adv-intro-section.is-visible .char { opacity: 1; transform: translateY(0); }
+/* Add individual delays for a beautiful cascade effect */
+.adv-intro-section.is-visible .char:nth-child(1) { transition-delay: 0.1s; }
+.adv-intro-section.is-visible .char:nth-child(2) { transition-delay: 0.15s; }
+.adv-intro-section.is-visible .char:nth-child(3) { transition-delay: 0.2s; }
+.adv-intro-section.is-visible .char:nth-child(4) { transition-delay: 0.25s; }
+.adv-intro-section.is-visible .char:nth-child(5) { transition-delay: 0.3s; }
+.adv-intro-section.is-visible .char:nth-child(6) { transition-delay: 0.35s; }
+.adv-intro-section.is-visible .char:nth-child(7) { transition-delay: 0.4s; }
+.adv-intro-section.is-visible .char:nth-child(8) { transition-delay: 0.45s; }
+.adv-intro-section.is-visible .char:nth-child(9) { transition-delay: 0.5s; }
+.adv-intro-section.is-visible .char:nth-child(10) { transition-delay: 0.55s; }
+.adv-intro-section.is-visible .char:nth-child(11) { transition-delay: 0.6s; }
+.adv-intro-section.is-visible .char:nth-child(12) { transition-delay: 0.65s; }
+.adv-intro-section.is-visible .char:nth-child(13) { transition-delay: 0.7s; }
+.adv-intro-section.is-visible .char:nth-child(14) { transition-delay: 0.75s; }
+.adv-intro-section.is-visible .char:nth-child(15) { transition-delay: 0.8s; }
+.adv-intro-section.is-visible .char:nth-child(16) { transition-delay: 0.85s; }
+.adv-intro-section.is-visible .char:nth-child(17) { transition-delay: 0.9s; }
+
+.adv-intro-description {
+  max-width: 650px; margin: 32px auto 0;
+  font-size: 1.1rem; line-height: 1.8;
+  opacity: 0; transform: translateY(20px);
+  transition: 0.8s var(--transition-elegant-slow) 1s;
+}
+.is-visible .adv-intro-description { opacity: 1; transform: translateY(0); }
+
+/* --- Section 2: NEW Advanced Vertical Timeline --- */
+.timeline-section-adv {
+    padding: 120px 0;
+    background-color: var(--color-elegant-bg-alt);
+}
+.timeline-container-adv {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.timeline-path-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 2px;
+}
+.timeline-svg {
+    height: 100%;
+    width: 2px;
+}
+.timeline-path-animated {
+    stroke-dasharray: 1200; /* Approximate height, will be animated */
+    stroke-dashoffset: 1200;
+}
+.timeline-section-adv.is-visible .timeline-path-animated {
+    animation: draw-path 2s cubic-bezier(0.86, 0, 0.07, 1) forwards;
+}
+@keyframes draw-path {
+    to { stroke-dashoffset: 0; }
+}
+
+.milestones-wrapper {
+    position: relative;
+}
+.timeline-milestone {
+    position: relative;
+    width: 50%;
+    padding: 10px 40px;
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease 0.5s, transform 0.8s ease 0.5s;
+}
+.timeline-milestone.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.timeline-milestone.align-left {
+    text-align: right;
+}
+.timeline-milestone.align-right {
+    text-align: left;
+    left: 50%;
+}
+
+/* The focus point on the line */
+.timeline-milestone::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-color: var(--color-elegant-bg-alt);
+    border: 3px solid var(--color-elegant-accent);
+    border-radius: 50%;
+    top: 20px;
+    transform: scale(0);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.8s;
+    z-index: 1;
+}
+.timeline-milestone.is-visible::after {
+    transform: scale(1);
+}
+.timeline-milestone.align-left::after {
+    right: -9px;
+}
+.timeline-milestone.align-right::after {
+    left: -9px;
+}
+
+.milestone-year {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-elegant-accent);
+}
+.milestone-title {
+    font-family: var(--font-elegant-display);
+    font-size: 2rem;
+    color: var(--color-elegant-text-dark);
+    margin: 8px 0;
+}
+.milestone-content p {
+    line-height: 1.7;
+}
+
+/* --- Section 3: Principles --- */
+.principles-section { padding: 120px 0; }
+.principles-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.principles-text-content .adv-section-title { text-align: left; }
+.principles-list { list-style: none; padding: 0; }
+.principle-item {
+  padding: 32px;
+  border-radius: 12px;
+  cursor: default;
+  border: 1px solid transparent;
+  border-left: 3px solid transparent;
+  transition: var(--transition-elegant-fast);
+}
+.principle-item h3 {
+  font-family: var(--font-elegant-display);
+  color: var(--color-elegant-text-dark);
+  font-size: 1.75rem;
+  margin-bottom: 8px;
+  transition: var(--transition-elegant-fast);
+}
+.principle-item p {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+.principle-item.active {
+  background-color: var(--color-elegant-bg-alt);
+  border-color: var(--color-elegant-border);
+  border-left-color: var(--color-elegant-accent);
+}
+.principle-item.active p {
+  max-height: 200px;
+  opacity: 1;
+}
+
+.principles-image-content {
+  width: 100%;
+  height: 600px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.principle-image {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.1);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.principle-image.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --- Section 4: Team --- */
+.team-section-adv { padding: 120px 0; background-color: var(--color-elegant-bg-alt); }
+.team-grid-adv {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+.team-member-card-adv {
+  opacity: 0; transform: translateY(50px);
+  transition: 1s var(--transition-elegant-slow);
+}
+.is-visible .team-member-card-adv { opacity: 1; transform: translateY(0); }
+.team-card-image-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  aspect-ratio: 1 / 1.2;
+}
+.team-card-image {
+  width: 100%; height: 100%;
+  background-size: cover; background-position: center;
+  transform: scale(1.1);
+  transition: transform 0.8s var(--transition-elegant-slow);
+}
+.team-member-card-adv:hover .team-card-image {
+  transform: scale(1);
+}
+.team-card-text-content { text-align: center; }
+.team-member-name-adv {
+  font-family: var(--font-elegant-display);
+  color: var(--color-elegant-text-dark);
+  font-size: 1.5rem;
+}
+.team-member-role-adv {
+  color: var(--color-elegant-accent);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* --- Section 5: Partners Marquee --- */
+.partners-section { padding: 80px 0; border-bottom: none; }
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+  mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+.marquee-logo {
+  font-family: var(--font-elegant-display);
+  font-size: 2.5rem;
+  color: var(--color-elegant-border);
+  margin: 0 40px;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/*
+====================================================================================
+--- RESPONSIVE DESIGN FOR MOBILE ---
+====================================================================================
+*/
+
+@media (max-width: 992px) {
+  .principles-container { grid-template-columns: 1fr; }
+  .principles-image-content { height: 400px; margin-top: 40px; }
+  .team-grid-adv { grid-template-columns: repeat(2, 1fr); gap: 48px; }
+}
+
+@media (max-width: 768px) {
+  #cursor-light { display: none; }
+  
+  .timeline-path-container { left: 20px; }
+  .timeline-milestone { width: 100%; padding: 0 0 0 40px; text-align: left !important; }
+  .timeline-milestone.align-right { left: 0; }
+  .timeline-milestone::after { left: -9px; }
+
+  .team-grid-adv { gap: 48px 24px; }
+  .principles-text-content .adv-section-title { text-align: center; }
+}

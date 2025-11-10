@@ -1,0 +1,228 @@
+/*
+====================================================================================
+--- "MASTERPIECE" PRIVACY POLICY PAGE STYLES ---
+====================================================================================
+*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap');
+
+:root {
+  --color-elegant-bg: #f4f1ea;
+  --color-elegant-text-dark: #252525;
+  --color-elegant-text-light: #6e6e6e;
+  --color-elegant-accent: #a4826d;
+  --color-elegant-bg-alt: #ffffff;
+  --color-elegant-border: #e0dace;
+  --font-elegant-body: 'Poppins', sans-serif;
+  --font-elegant-display: 'Playfair Display', serif;
+  --transition-slow: 1s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.4s ease;
+}
+
+.privacy-policy-page {
+  background-color: var(--color-elegant-bg-alt);
+  color: var(--color-elegant-text-light);
+  font-family: var(--font-elegant-body);
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+/* --- Hero Section --- */
+.pp-hero-section {
+    padding: 120px 0 80px 0;
+    background-color: var(--color-elegant-bg);
+    text-align: center;
+    border-bottom: 1px solid var(--color-elegant-border);
+}
+.pp-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+.pp-main-title {
+    font-family: var(--font-elegant-display);
+    color: var(--color-elegant-text-dark);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.1;
+    margin-bottom: 24px;
+}
+.pp-hero-subtitle {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+}
+
+/* --- Main Content Layout --- */
+.pp-main-content {
+    padding: 80px 0;
+}
+.pp-layout-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 80px;
+    align-items: flex-start;
+}
+
+/* --- Table of Contents (Desktop) --- */
+.pp-toc-desktop {
+    position: sticky;
+    top: 120px; /* Aligns with navbar height */
+}
+.pp-toc-desktop h3 {
+    font-family: var(--font-elegant-display);
+    color: var(--color-elegant-text-dark);
+    font-size: 1.25rem;
+    margin-bottom: 24px;
+}
+.pp-toc-desktop ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.pp-toc-desktop li a {
+    color: var(--color-elegant-text-light);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 8px;
+    display: block;
+    border-radius: 6px;
+    position: relative;
+    transition: color var(--transition-fast), transform var(--transition-fast);
+}
+.pp-toc-desktop li a:hover {
+    color: var(--color-elegant-accent);
+    transform: translateX(5px);
+}
+
+/* --- Table of Contents (Mobile) --- */
+.pp-toc-mobile { display: none; }
+
+/* --- Policy Content Article --- */
+.pp-policy-content {
+    scroll-behavior: smooth;
+}
+.pp-content-section {
+    padding-bottom: 48px;
+    margin-bottom: 48px;
+    border-bottom: 1px solid var(--color-elegant-border);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s var(--transition-slow), transform 0.8s var(--transition-slow);
+}
+.pp-content-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.pp-content-section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.pp-policy-content h2 {
+    font-family: var(--font-elegant-display);
+    color: var(--color-elegant-text-dark);
+    font-size: clamp(1.8rem, 4vw, 2.2rem);
+    line-height: 1.3;
+    margin-bottom: 24px;
+}
+.pp-policy-content p {
+    margin-bottom: 24px;
+}
+.pp-policy-content a {
+    color: var(--color-elegant-accent);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-elegant-accent);
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+.pp-policy-content a:hover {
+    background-color: var(--color-elegant-accent);
+    color: white;
+}
+
+/*
+====================================================================================
+--- RESPONSIVE DESIGN FOR ALL DEVICES ---
+====================================================================================
+*/
+
+@media (max-width: 992px) {
+    .pp-layout-grid {
+        grid-template-columns: 1fr;
+    }
+    .pp-toc-desktop {
+        display: none; /* Hide the desktop TOC */
+    }
+
+    /* Show and style the mobile TOC */
+    .pp-toc-mobile {
+        display: block;
+        margin-bottom: 60px;
+    }
+    .pp-toc-mobile button {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--color-elegant-bg);
+        border: 1px solid var(--color-elegant-border);
+        border-radius: 8px;
+        padding: 16px 20px;
+        font-family: var(--font-elegant-body);
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--color-elegant-text-dark);
+        cursor: pointer;
+    }
+    .pp-toc-mobile svg {
+        transition: transform var(--transition-fast);
+    }
+    .pp-toc-mobile svg.open {
+        transform: rotate(180deg);
+    }
+    .pp-toc-mobile nav {
+        background-color: var(--color-elegant-bg);
+        border: 1px solid var(--color-elegant-border);
+        border-top: none;
+        border-radius: 0 0 8px 8px;
+        margin-top: -8px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease, padding 0.5s ease;
+    }
+    .pp-toc-mobile nav.open {
+        max-height: 600px;
+        padding: 10px;
+    }
+    .pp-toc-mobile ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .pp-toc-mobile li a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: var(--color-elegant-text-light);
+        font-weight: 600;
+        border-radius: 6px;
+    }
+    .pp-toc-mobile li a:hover {
+        background-color: var(--color-elegant-accent);
+        color: white;
+    }
+}
+
+@media (max-width: 768px) {
+    .pp-hero-section {
+        padding: 100px 0 60px 0;
+    }
+    .pp-main-content {
+        padding: 60px 0;
+    }
+    .pp-container {
+        padding: 0 20px;
+    }
+}

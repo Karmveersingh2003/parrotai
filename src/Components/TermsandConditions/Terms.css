@@ -1,0 +1,195 @@
+/*
+====================================================================================
+--- "MASTERPIECE" TERMS & CONDITIONS PAGE STYLES ---
+====================================================================================
+*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap');
+
+:root {
+  --color-elegant-bg: #f4f1ea;
+  --color-elegant-text-dark: #252525;
+  --color-elegant-text-light: #6e6e6e;
+  --color-elegant-accent: #a4826d;
+  --color-elegant-bg-alt: #ffffff;
+  --color-elegant-border: #e0dace;
+  --font-elegant-body: 'Poppins', sans-serif;
+  --font-elegant-display: 'Playfair Display', serif;
+  --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.4s ease;
+}
+
+.terms-page {
+  background-color: var(--color-elegant-bg);
+  font-family: var(--font-elegant-body);
+  color: var(--color-elegant-text-light);
+}
+
+/* --- Hero Section --- */
+.terms-hero-section {
+    padding: 120px 30px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-elegant-border);
+}
+.terms-hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.terms-main-title {
+    font-family: var(--font-elegant-display);
+    color: var(--color-elegant-text-dark);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.1;
+    margin-bottom: 24px;
+}
+.terms-hero-subtitle {
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+/* --- Horizontal Accordion Section --- */
+.terms-accordion-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 80px 40px;
+}
+.terms-accordion-container {
+    display: flex;
+    width: 100%;
+    max-width: 1400px;
+    height: 600px;
+    gap: 16px;
+}
+
+.terms-accordion-panel {
+    flex: 1; /* Default compressed state */
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: flex var(--transition-slow);
+}
+.terms-accordion-panel.active {
+    flex: 6; /* Expanded state */
+}
+
+.panel-background {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 1s ease;
+}
+.terms-accordion-panel:hover .panel-background {
+    transform: scale(1.05); /* Parallax on hover */
+}
+
+.panel-content {
+    position: relative;
+    z-index: 1;
+    width: 100%; height: 100%;
+    padding: 40px;
+    display: flex;
+    align-items: flex-end;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+    color: white;
+}
+
+.panel-title-short {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    font-family: var(--font-elegant-display);
+    font-size: 2rem;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.panel-inner-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease 0.3s, transform 0.4s ease 0.3s;
+}
+.panel-title-full {
+    font-family: var(--font-elegant-display);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 16px;
+}
+.panel-inner-content p {
+    line-height: 1.8;
+    max-width: 80%;
+}
+
+/* --- Active State Transitions --- */
+.terms-accordion-panel.active .panel-title-short {
+    opacity: 0;
+    transform: rotate(180deg) translateY(20px);
+}
+.terms-accordion-panel.active .panel-inner-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/*
+====================================================================================
+--- RESPONSIVE DESIGN FOR MOBILE ---
+====================================================================================
+*/
+
+@media (max-width: 992px) {
+    .terms-accordion-section {
+        padding: 80px 20px;
+        min-height: auto;
+    }
+    
+    /* --- THE FIX: Transform to a vertical accordion --- */
+    .terms-accordion-container {
+        flex-direction: column;
+        height: auto; /* Allow height to be determined by content */
+        gap: 12px;
+    }
+
+    .terms-accordion-panel {
+        flex: none; /* Reset flex property */
+        height: 80px; /* Default compressed height */
+        transition: height var(--transition-slow);
+    }
+    .terms-accordion-panel.active {
+        height: 500px; /* Expanded height (adjust as needed) */
+    }
+
+    .panel-content {
+        align-items: center; /* Center content vertically */
+        padding: 20px;
+        background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+    }
+
+    .panel-title-short {
+        writing-mode: horizontal-tb; /* Reset for horizontal text */
+        transform: none;
+        position: static;
+        font-size: 1.5rem;
+    }
+    .panel-inner-content {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        transition-delay: 0.4s;
+    }
+    
+    .panel-inner-content p {
+        max-width: 100%;
+        font-size: 0.95rem;
+    }
+
+    /* --- Active State on Mobile --- */
+    .terms-accordion-panel.active .panel-title-short {
+        opacity: 0;
+        transition-duration: 0.2s;
+    }
+}

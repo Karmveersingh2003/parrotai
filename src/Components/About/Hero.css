@@ -1,0 +1,287 @@
+/*
+====================================================================================
+--- ELEGANT & CLASSY HERO SECTION STYLES ---
+====================================================================================
+*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap');
+
+:root {
+  /* A refined, luxurious color palette */
+  --color-elegant-bg: #f4f1ea;       /* Warm, creamy beige */
+  --color-elegant-text-dark: #252525;  /* Deep, soft charcoal */
+  --color-elegant-text-light: #6e6e6e; /* Muted secondary text */
+  --color-elegant-accent: #a4826d;     /* Sophisticated bronze-gold */
+
+  --font-elegant-body: 'Poppins', sans-serif;
+  --font-elegant-display: 'Playfair Display', serif;
+  
+  --transition-elegant-slow: 1s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-elegant-fast: 0.4s ease;
+}
+
+.elegant-hero-section {
+  width: 100%;
+  height: 100vh;
+  min-height: 750px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-elegant-bg);
+}
+
+/* --- Background Elements --- */
+.elegant-hero-noise-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWYmJitbW1xcXFuZmaucXKFhoNicYvV1dXz8/Pj4+Pv7+/r6+vh4eHT09Pb29pjSj4VAAAAFnRSTlP+Gef3FD+LN24zMy8sLCNZAwP+Q0E7Azwhs/wAAACfSURBVDjL7ZJbEsMgDEUBQBY8fO/9L+3g4bF4JpZlTvcfsAQHtvnK3e6V+4337L1v2v3i7na/X+92u1/P9zt/p9/v9/v+3D4zGgO2drPz2fAF3pnLe3l5fO5a3p7e3h/d7f57f7/f7/e5/e5/d7/7/f7/e5/e5/e5/e73e73e73e73e73e73e73e//D3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3/6f/BwBu93u/3e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3e73e73e73e//BwA3d/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3f/3...');
+  opacity: 0.05;
+  z-index: 0;
+}
+
+.elegant-hero-background-shapes {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  transition: transform 0.5s ease-out; /* Smooth parallax */
+  z-index: 1;
+}
+.elegant-hero-shape {
+  position: absolute;
+  border-radius: 50%;
+  background-color: var(--color-elegant-accent);
+  opacity: 0;
+  animation: float-elegant 10s ease-in-out infinite alternate, fadeIn-elegant 1.5s ease forwards;
+}
+.elegant-hero-shape.shape-1 { width: 400px; height: 400px; top: -10%; left: -5%; animation-delay: 0.5s, 0.5s; }
+.elegant-hero-shape.shape-2 { width: 250px; height: 250px; bottom: -15%; right: -5%; animation-delay: 1s, 1s; animation-duration: 12s; }
+
+@keyframes float-elegant {
+  to { transform: translate(40px, 60px) rotate(10deg); }
+}
+@keyframes fadeIn-elegant {
+  to { opacity: 0.06; }
+}
+
+/* --- Main Content --- */
+.elegant-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  padding: 0 20px;
+}
+
+/* --- Headline Animation --- */
+.elegant-hero-headline {
+  font-family: var(--font-elegant-display);
+  font-size: clamp(3.5rem, 10vw, 8rem);
+  font-weight: 700;
+  color: var(--color-elegant-text-dark);
+  line-height: 1.15;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25em;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 1.2s var(--transition-elegant-slow) 0.3s;
+}
+.elegant-hero-section.loaded .elegant-hero-headline {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.elegant-hero-animation-wrapper {
+  height: 1.15em; /* Match line-height */
+  overflow: hidden;
+  position: relative;
+}
+
+.elegant-hero-animation-track {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  animation: slide-text-elegant 7s infinite cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.elegant-hero-animation-track span {
+  margin: 0;
+  padding: 0;
+  height: 1.15em; /* Match line-height */
+  display: flex;
+  align-items: center;
+  color: var(--color-elegant-accent);
+}
+
+@keyframes slide-text-elegant {
+  0%, 20% { transform: translateY(0%); }
+  25%, 45% { transform: translateY(-20%); }
+  50%, 70% { transform: translateY(-40%); }
+  75%, 95% { transform: translateY(-60%); }
+  100% { transform: translateY(-80%); }
+}
+
+/* --- Subheadline --- */
+.elegant-hero-subheadline {
+  font-family: var(--font-elegant-body);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: var(--color-elegant-text-light);
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+  max-width: 600px;
+  margin: 24px auto 48px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 1.2s var(--transition-elegant-slow) 0.5s;
+}
+.elegant-hero-section.loaded .elegant-hero-subheadline {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Elegant CTA Button (FIXED) --- */
+.elegant-hero-cta-container {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 1.2s var(--transition-elegant-slow) 0.7s;
+}
+.elegant-hero-section.loaded .elegant-hero-cta-container {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.elegant-hero-cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: transparent;
+  color: var(--color-elegant-accent);
+  padding: 18px 36px;
+  border: 2px solid var(--color-elegant-accent);
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: var(--font-elegant-body);
+  position: relative;
+  overflow: hidden;
+  transition: color var(--transition-elegant-fast);
+}
+
+.elegant-hero-cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-elegant-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-elegant-fast);
+  z-index: 0;
+}
+
+.elegant-hero-cta-button:hover::before {
+  transform: scaleX(1);
+}
+
+.elegant-hero-cta-button:hover {
+  color: var(--color-elegant-bg);
+}
+
+.button-text, .button-icon {
+  position: relative;
+  z-index: 1;
+  transition: transform var(--transition-elegant-fast);
+}
+
+.button-icon {
+  opacity: 0;
+  transform: translateX(-15px);
+}
+
+.elegant-hero-cta-button:hover .button-text {
+  transform: translateX(-8px);
+}
+
+.elegant-hero-cta-button:hover .button-icon {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/*
+====================================================================================
+--- RESPONSIVE DESIGN & MOBILE-SPECIFIC ENHANCEMENTS ---
+====================================================================================
+*/
+
+/* --- For Tablets and Smaller Desktops --- */
+@media (max-width: 1024px) {
+  .elegant-hero-content {
+    max-width: 80%; /* Give content more room */
+  }
+}
+
+/* --- For Mobile Devices --- */
+@media (max-width: 768px) {
+  .elegant-hero-section {
+    min-height: 667px; /* Adjust height for typical phone screens */
+    padding: 0 5%; /* Add side padding */
+  }
+
+  .elegant-hero-headline {
+    /* Significantly adjust font size for mobile */
+    font-size: clamp(2.8rem, 16vw, 4rem);
+    line-height: 1.2;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .elegant-hero-animation-wrapper,
+  .elegant-hero-animation-track span {
+    height: 1.2em; /* Match the new mobile line-height */
+  }
+  
+  .elegant-hero-subheadline {
+    /* Adjust font size and margins for a more compact layout */
+    font-size: clamp(0.95rem, 4vw, 1.05rem);
+    margin: 16px auto 32px;
+    max-width: 90%;
+  }
+
+  .elegant-hero-cta-button {
+    /* Make the button slightly smaller to feel proportional */
+    padding: 16px 32px;
+    font-size: 0.95rem;
+  }
+
+  .elegant-hero-shape {
+    /* Scale down the background shapes to be less intrusive */
+    transform: scale(0.6);
+  }
+
+  .elegant-hero-shape.shape-1 {
+    top: -15%;
+    left: -20%;
+  }
+
+  .elegant-hero-shape.shape-2 {
+    bottom: -20%;
+    right: -15%;
+  }
+}
+
+/* --- For Very Small Mobile Devices --- */
+@media (max-width: 480px) {
+  .elegant-hero-headline {
+    /* Further reduce font size for small screens */
+    font-size: clamp(2.5rem, 18vw, 3rem);
+  }
+
+  .elegant-hero-cta-button {
+    width: 100%; /* Make button full-width for easy tapping */
+    justify-content: center;
+  }
+}

@@ -1,0 +1,343 @@
+/*
+====================================================================================
+--- GLOBAL STYLES & CREATIVE THEME SETUP ---
+====================================================================================
+*/
+
+/* --- Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Playfair+Display:wght@700&display=swap');
+
+:root {
+  /* --- Light Mode Color Palette --- */
+  --color-background: #fdfdfd;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #6b6b6b;
+  --color-accent-primary: #ff5e3a; /* A vibrant coral */
+  --color-accent-secondary: #eef3f6; /* A very light, cool gray */
+  --color-border: #e0e0e0;
+
+  /* --- Typography --- */
+  --font-body: 'Manrope', sans-serif;
+  --font-display: 'Playfair Display', serif;
+  
+  /* --- Sizing & Spacing --- */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 32px;
+  --spacing-xl: 64px;
+  --section-padding: 120px;
+  --border-radius-main: 12px;
+  
+  /* --- Animation & Transitions --- */
+  --transition-cubic: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-ease: 0.3s ease-in-out;
+}
+
+/* --- Base Styles --- */
+.creative-sections-wrapper {
+  background-color: var(--color-background);
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- General Scroll Animation Styles --- */
+.is-visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/*
+====================================================================================
+--- SECTION 1: "Foundations of Trust" STYLES ---
+====================================================================================
+*/
+.trust-section {
+  width: 100%;
+  padding: var(--section-padding) 5%;
+  text-align: center;
+}
+.trust-container { max-width: 1200px; margin: 0 auto; }
+
+.trust-header {
+  margin-bottom: var(--spacing-xl);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s var(--transition-cubic), transform 1s var(--transition-cubic);
+}
+.trust-subtitle {
+  color: var(--color-accent-primary);
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-sm);
+}
+.trust-title {
+  font-family: var(--font-display);
+  color: var(--color-text-primary);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+  margin-bottom: var(--spacing-md);
+}
+.trust-description { font-size: 1.1rem; line-height: 1.7; max-width: 700px; margin: 0 auto; }
+
+.trust-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
+.trust-feature-card {
+  background-color: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-main);
+  padding: var(--spacing-lg);
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  opacity: 0;
+  transform: translateY(50px) scale(0.95);
+  transition: all 0.8s var(--transition-cubic);
+}
+.trust-feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+  border-color: var(--color-accent-primary);
+}
+.trust-icon-wrapper {
+  width: 50px; height: 50px;
+  display: flex; align-items: center; justify-content: center;
+  background-color: var(--color-accent-secondary);
+  color: var(--color-accent-primary);
+  border-radius: 50%;
+  margin-bottom: var(--spacing-md);
+}
+.trust-icon-wrapper svg { width: 24px; height: 24px; }
+.trust-card-title {
+  color: var(--color-text-primary);
+  font-size: 1.25rem; font-weight: 800;
+  margin-bottom: var(--spacing-sm);
+}
+.trust-card-shine {
+  position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: conic-gradient(transparent, rgba(255, 94, 58, 0.1), transparent 30%);
+  animation: rotate 4s linear infinite;
+  opacity: 0;
+  transition: opacity var(--transition-ease);
+}
+.trust-feature-card:hover .trust-card-shine { opacity: 1; }
+@keyframes rotate { 100% { transform: rotate(1turn); } }
+
+/*
+====================================================================================
+--- SECTION 2: "Symphony of Flavors" STYLES ---
+====================================================================================
+*/
+.flavors-section {
+  width: 100%;
+  padding: var(--section-padding) 0;
+  background-color: var(--color-accent-secondary);
+  overflow: hidden;
+}
+.flavors-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* Ratio for header and scrolling panel */
+  gap: var(--spacing-xl);
+  max-width: 1600px;
+  margin: 0 auto;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 1.5s var(--transition-cubic);
+}
+.flavors-sticky-header {
+  padding: 0 5%;
+  position: sticky;
+  top: var(--section-padding);
+}
+.flavors-subtitle {
+  color: var(--color-accent-primary);
+  font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase; margin-bottom: var(--spacing-sm);
+}
+.flavors-title {
+  font-family: var(--font-display); color: var(--color-text-primary);
+  font-size: clamp(3rem, 3vw, 5rem); line-height: 1.1; margin-bottom: var(--spacing-md);
+}
+.flavors-description { font-size: 1.1rem; line-height: 1.7; max-width: 400px; }
+.flavors-scrolling-panel { overflow-x: hidden; }
+.flavors-card-track {
+  display: flex;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  width: fit-content;
+  animation: scroll 40s linear infinite;
+}
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.flavors-card-track:hover { animation-play-state: paused; }
+.flavor-card {
+  width: 350px;
+  flex-shrink: 0;
+  background-color: var(--color-background);
+  border-radius: var(--border-radius-main);
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  transition: transform var(--transition-ease), box-shadow var(--transition-ease);
+}
+.flavor-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+.flavor-image-wrapper {
+  width: 100%; height: 250px; overflow: hidden;
+}
+.flavor-image {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.flavor-card:hover .flavor-image { transform: scale(1.1); }
+.flavor-text-content { padding: var(--spacing-lg); }
+.flavor-card-title {
+  font-family: var(--font-display); color: var(--color-text-primary);
+  font-size: 1.5rem; margin-bottom: var(--spacing-sm);
+}
+.flavor-card-link {
+  display: inline-block;
+  margin-top: var(--spacing-md);
+  color: var(--color-accent-primary);
+  text-decoration: none; font-weight: 600;
+}
+.flavor-card-link span {
+  display: inline-block;
+  transition: transform var(--transition-ease);
+}
+.flavor-card-link:hover span { transform: translateX(5px); }
+
+/*
+====================================================================================
+--- SECTION 3: "Our Heritage, Our Passion" STYLES ---
+====================================================================================
+*/
+.heritage-section {
+  width: 100%;
+  padding: var(--section-padding) 5%;
+  position: relative;
+}
+.heritage-container {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  align-items: center; gap: var(--spacing-xl);
+  max-width: 1200px; margin: 0 auto;
+  opacity: 0;
+  transition: opacity 1.5s ease 0.3s;
+}
+.heritage-text-content {
+  transform: translateX(-50px);
+  transition: transform 1.2s var(--transition-cubic);
+}
+.heritage-container.is-visible .heritage-text-content {
+  transform: translateX(0);
+}
+.heritage-subtitle {
+  color: var(--color-accent-primary);
+  font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase; margin-bottom: var(--spacing-sm);
+}
+.heritage-title {
+  font-family: var(--font-display); color: var(--color-text-primary);
+  font-size: clamp(3rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: var(--spacing-lg);
+}
+.heritage-description { font-size: 1.1rem; line-height: 1.8; margin-bottom: var(--spacing-xl); }
+.drop-cap {
+  font-family: var(--font-display); color: var(--color-accent-primary);
+  font-size: 4rem; float: left;
+  line-height: 1; padding-right: var(--spacing-sm);
+}
+.heritage-button {
+  display: inline-block;
+  background-color: var(--color-accent-primary);
+  color: white; padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: 50px; text-decoration: none; font-weight: 600;
+  box-shadow: 0 10px 20px rgba(255, 94, 58, 0.2);
+  transition: all var(--transition-ease);
+}
+.heritage-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(255, 94, 58, 0.3);
+}
+.heritage-image-collage {
+  position: relative; perspective: 1000px;
+}
+.heritage-image-parallax-wrapper {
+  position: relative;
+  transition: transform 0.5s ease-out;
+  transform: scale(0.9) rotate(5deg);
+  transition: transform 1.2s var(--transition-cubic);
+}
+.heritage-container.is-visible .heritage-image-parallax-wrapper {
+  transform: scale(1) rotate(0deg);
+}
+.heritage-main-image, .heritage-secondary-image {
+  object-fit: cover;
+  border-radius: var(--border-radius-main);
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
+}
+.heritage-main-image {
+  width: 80%;
+  height: auto;
+  aspect-ratio: 4/5;
+}
+.heritage-secondary-image {
+  position: absolute;
+  bottom: -10%; right: -5%;
+  width: 50%;
+  border: 8px solid var(--color-background);
+}
+.heritage-badge {
+  position: absolute;
+  top: -8%; left: -5%;
+  width: 120px; height: 120px;
+  background-color: var(--color-accent-primary);
+  color: white;
+  border-radius: 50%;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  box-shadow: 0 10px 20px rgba(255, 94, 58, 0.2);
+  text-align: center;
+}
+.heritage-badge-text { font-weight: 600; font-size: 1rem; }
+.heritage-badge-year { font-family: var(--font-display); font-size: 2.5rem; line-height: 1; }
+
+/*
+====================================================================================
+--- RESPONSIVE DESIGN STYLES ---
+====================================================================================
+*/
+@media (max-width: 992px) {
+  :root { --section-padding: 80px; }
+  .flavors-container { grid-template-columns: 1fr; }
+  .flavors-sticky-header {
+    position: static; text-align: center;
+    margin-bottom: var(--spacing-xl);
+  }
+  .flavors-description { margin: 0 auto; }
+  .heritage-container { grid-template-columns: 1fr; }
+  .heritage-text-content { order: 2; text-align: center; }
+  .heritage-image-collage { order: 1; margin-bottom: var(--spacing-xl); }
+}
+
+@media (max-width: 768px) {
+  .trust-features-grid { grid-template-columns: 1fr; }
+  .flavor-card { width: 300px; }
+}

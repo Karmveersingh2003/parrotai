@@ -1,0 +1,541 @@
+/*
+====================================================================================
+--- "MASTERPIECE" NAVBAR STYLES (FINAL & FIXED) ---
+====================================================================================
+*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap');
+
+:root {
+  --color-elegant-bg: #f4f1ea;
+  --color-elegant-text-dark: #252525;
+  --color-elegant-text-light: #6e6e6e;
+  --color-elegant-accent: #a4826d;
+  --color-elegant-border: #e0dace;
+  --font-elegant-body: 'Poppins', sans-serif;
+  --font-elegant-display: 'Playfair Display', serif;
+  --transition-fast: 0.4s ease;
+  --transition-cubic: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- Base Navbar Styling --- */
+#mp-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 2%;
+  z-index: 1000;
+  transition: background-color 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease, border-bottom-color 0.4s ease;
+  border-bottom: 1px solid transparent;
+  
+}
+
+/* --- Scrolled "Glassmorphism" State --- */
+#mp-navbar.scrolled {
+  background-color: rgba(244, 241, 234, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: var(--color-elegant-border);
+  padding: 20px 4%;
+}
+
+.mp-navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* --- Logo Styling --- */
+.mp-navbar-logo {
+  display: flex;
+  align-items: center;
+  color: var(--color-elegant-text-dark);
+  text-decoration: none;
+  gap: 12px;
+}
+.mp-navbar-logo img {
+  height: 40px;
+  width: auto;
+  color: var(--color-elegant-accent);
+  transition: transform 0.4s var(--transition-cubic);
+}
+.mp-navbar-logo:hover img {
+  transform: rotate(15deg) scale(1.1);
+}
+.mp-navbar-logo span {
+  font-family: var(--font-elegant-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+/* --- Navigation Links --- */
+.mp-nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  gap: 40px;
+}
+.mp-nav-links > li {
+  position: relative;
+}
+.mp-nav-links > li > a {
+  color: var(--color-elegant-text-dark);
+  text-decoration: none;
+  font-family: var(--font-elegant-body);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 50px;
+  transition: color var(--transition-fast);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 1;
+}
+
+/* --- Elegant "Pill" Hover/Active Indicator --- */
+.mp-nav-links > li:not(.mp-nav-cta)::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: var(--color-elegant-accent);
+    border-radius: 50px;
+   
+    opacity: 0;
+  
+    z-index: 0;
+}
+/* .mp-nav-links > li:not(.mp-nav-cta):hover::before {
+    transform: scale(1);
+    opacity: 1;
+}
+.mp-nav-links > li:not(.mp-nav-cta):hover > a {
+    color: white;
+} */
+
+/* --- Call to Action Button --- */
+.mp-nav-cta a {
+  background-color: var(--color-elegant-accent);
+  color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.mp-nav-cta a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px -5px rgba(164, 130, 109, 0.4);
+}
+
+/* --- Desktop Dropdown Styling --- */
+.mp-dropdown::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 15px;
+    background: transparent;
+}
+.mp-dropdown-content {
+  position: absolute;
+  top: calc(100% + 15px);
+  left: 50%;
+  background-color: var(--color-elegant-bg-alt);
+  min-width: 220px;
+  box-shadow: 0 15px 30px -10px rgba(0,0,0,0.1);
+  border: 1px solid var(--color-elegant-border);
+  z-index: 1;
+  border-radius: 12px;
+  padding: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s;
+}
+.mp-dropdown:hover .mp-dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0s;
+}
+.mp-dropdown-content a {
+  color: var(--color-elegant-text-dark);
+  padding: 12px 20px;
+  text-decoration: none;
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+.mp-dropdown-content a:hover {
+  background-color: var(--color-elegant-accent);
+  color: white;
+}
+.mp-dropdown-chevron { display: none; }
+
+/* --- Mobile Hamburger Menu --- */
+.mp-hamburger-menu {
+    display: none;
+    cursor: pointer;
+    z-index: 1002;
+}
+.mp-hamburger-menu div {
+    width: 28px; height: 3px;
+    background-color: var(--color-elegant-text-dark);
+    margin: 6px 0;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.mp-hamburger-menu.open div:nth-child(1) { transform: rotate(-45deg) translate(-8px, 7px); }
+.mp-hamburger-menu.open div:nth-child(2) { opacity: 0; }
+.mp-hamburger-menu.open div:nth-child(3) { transform: rotate(45deg) translate(-8px, -7px); }
+
+/*
+====================================================================================
+--- RESPONSIVE DESIGN FOR MOBILE & TABLET (ALL FIXES APPLIED) ---
+====================================================================================
+*/
+@media (max-width: 992px) {
+  .mp-hamburger-menu { display: block; }
+  .mp-nav-links {
+    position: fixed;
+    top: 0; right: -100%;
+    width: 100%; height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-elegant-bg);
+    gap: 20px;
+    transition: right 0.65s var(--transition-cubic);
+  }
+  .mp-nav-links.open { right: 0; }
+  
+  /** MOBILE FIX: Ensure each list item is a block for proper layout **/
+  .mp-nav-links li {
+    opacity: 0;
+    transform: translateX(50px);
+    width: 100%; /** MOBILE FIX **/
+    text-align: center; /** MOBILE FIX **/
+    /* This animation will now correctly apply and persist */
+    animation: navLinkFade 0.5s ease forwards;
+  }
+  .mp-nav-links.open li:nth-child(1) { animation-delay: 0.2s; }
+  .mp-nav-links.open li:nth-child(2) { animation-delay: 0.3s; }
+  .mp-nav-links.open li:nth-child(3) { animation-delay: 0.4s; }
+  .mp-nav-links.open li:nth-child(4) { animation-delay: 0.5s; }
+  .mp-nav-links.open li:nth-child(5) { animation-delay: 0.6s; }
+  
+  .mp-nav-links > li > a { 
+      font-size: 2rem; 
+      /** MOBILE FIX: Make the link an inline-block to respect padding **/
+      display: inline-block;
+  }
+  .mp-nav-cta { margin-top: 20px; }
+  
+  /* --- Mobile Dropdown Logic --- */
+  .mp-dropdown::after { display: none; }
+  
+  .mp-dropdown-chevron {
+    display: inline-block;
+    transition: transform 0.4s ease;
+    margin-left: 8px;
+  }
+  .mp-dropdown.dropdown-open > a {
+    color: var(--color-elegant-accent);
+  }
+  .mp-dropdown.dropdown-open .mp-dropdown-chevron {
+    transform: rotate(180deg);
+  }
+
+  .mp-dropdown-content {
+    position: static;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin-top: 10px;
+    border-radius: 0;
+    min-width: auto;
+    text-align: center;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    max-height: 0; /* Initially hidden */
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out, margin-top 0.5s ease-in-out;
+  }
+  .mp-dropdown.dropdown-open .mp-dropdown-content {
+    max-height: 500px; /* Animate to this height when open */
+  }
+  .mp-dropdown-content a {
+    font-size: 1.2rem;
+    padding: 10px;
+    color: var(--color-elegant-text-light);
+  }
+  .mp-dropdown-content a:hover {
+    color: var(--color-elegant-accent);
+    background: none;
+  }
+}
+
+/* The animation keyframes */
+@keyframes navLinkFade {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+@media (max-width: 480px) {
+  /* Reduce navbar padding for more vertical space */
+  #mp-navbar {
+    padding: 20px 5%;
+  }
+
+  #mp-navbar.scrolled {
+    padding: 15px 5%;
+  }
+
+  /* Make the logo slightly more compact */
+  .mp-navbar-logo img {
+    height: 35px;
+  }
+  .mp-navbar-logo span {
+    font-size: 1.6rem;
+  }
+  
+  /* Refine font sizes inside the opened mobile menu */
+  .mp-nav-links > li > a {
+    font-size: 1.8rem; /* Slightly smaller for better fit */
+    padding: 6px 12px;
+  }
+  
+  /* Adjust mobile dropdown item font size for better readability */
+  .mp-dropdown-content a {
+    font-size: 1.1rem;
+  }
+
+  /* Make the CTA button slightly smaller to match the new scale */
+  .mp-nav-cta a {
+      font-size: 1rem;
+      padding: 10px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Reduce the top margin of the dropdown content for a more compact feel */
+  .mp-dropdown-content {
+    margin-top: 8px;
+  }
+
+  /* Refine dropdown link font size and padding for better readability */
+  .mp-dropdown-content a {
+    font-size: 1.1rem;
+    padding: 8px 10px;
+  }
+
+  /* Make the chevron icon slightly smaller to match the new scale */
+  .mp-dropdown-chevron {
+      width: 14px;
+      height: 14px;
+  }
+}
+
+/* --- Base Navbar Styling --- */
+#mp-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  
+  z-index: 1000;
+  transition: background-color 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease, border-bottom-color 0.4s ease;
+  border-bottom: 1px solid transparent;
+
+  /* 👇 ADD THIS */
+  background-color: rgba(244, 241, 234, 0.45); /* soft frosted background */
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+}
+
+/* --- Scrolled "Glassmorphism" State --- */
+#mp-navbar.scrolled {
+  background-color: rgba(244, 241, 234, 0.7);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border-bottom-color: var(--color-elegant-border);
+  padding: 20px 4%;
+}
+
+@media (max-width: 992px) {
+  .mp-hamburger-menu { 
+    display: block; 
+    z-index: 1002;
+  }
+
+  .mp-nav-links {
+    position: fixed;
+    top: 0; 
+    right: -100%;
+    width: 100%; 
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* 👇 BACKDROP FIX */
+    background: rgba(244, 241, 234, 0.8);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+    /* 👇 SMOOTH SLIDE-IN TRANSITION */
+    transition: right 0.65s var(--transition-cubic);
+    z-index: 1001;
+  }
+
+  .mp-nav-links.open { 
+    right: 0; 
+  }
+
+  /* Animate links inside menu */
+  .mp-nav-links li {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
+  }
+
+  .mp-nav-links.open li:nth-child(1) { animation-delay: 0.2s; }
+  .mp-nav-links.open li:nth-child(2) { animation-delay: 0.3s; }
+  .mp-nav-links.open li:nth-child(3) { animation-delay: 0.4s; }
+  .mp-nav-links.open li:nth-child(4) { animation-delay: 0.5s; }
+  .mp-nav-links.open li:nth-child(5) { animation-delay: 0.6s; }
+
+  .mp-nav-links > li > a { 
+    font-size: 2rem; 
+    color: var(--color-elegant-text-dark);
+    display: inline-block;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .mp-nav-links > li > a:hover {
+    color: var(--color-elegant-accent);
+  }
+
+  /* --- Dropdown Styling for Mobile --- */
+  .mp-dropdown::after { display: none; }
+
+  .mp-dropdown-chevron {
+    display: inline-block;
+    margin-left: 8px;
+    transition: transform 0.4s ease;
+  }
+
+  .mp-dropdown-content {
+    position: static;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin-top: 8px;
+    border-radius: 0;
+    min-width: auto;
+    text-align: center;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+  }
+
+  .mp-dropdown.dropdown-open .mp-dropdown-content {
+    max-height: 400px;
+  }
+
+  .mp-dropdown-content a {
+    display: block;
+    color: var(--color-elegant-text-light);
+    font-size: 1.3rem;
+    padding: 10px 0;
+    transition: color 0.3s ease;
+  }
+
+  .mp-dropdown-content a:hover {
+    color: var(--color-elegant-accent);
+  }
+
+  /* CTA button fix */
+  .mp-nav-cta a {
+    background: var(--color-elegant-accent);
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px 28px;
+    border-radius: 50px;
+    margin-top: 20px;
+    display: inline-block;
+  }
+}
+
+/* Keyframe animation for fade-in */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* =========================================================
+   ✅ FIX: Remove Hover Dependence and Animation for Services Dropdown
+   ========================================================= */
+
+/* Disable hover-triggered open behavior (desktop hover interfering on mobile) */
+@media (max-width: 992px) {
+  .mp-dropdown:hover .mp-dropdown-content {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+}
+
+/* Make dropdown open instantly when the .dropdown-open class is added */
+.mp-dropdown.dropdown-open .mp-dropdown-content {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateX(-50%) translateY(0) !important;
+  transition: none !important;
+}
+
+/* Prevent flicker on mobile by disabling transitions and animations */
+@media (max-width: 992px) {
+  .mp-dropdown-content,
+  .mp-dropdown.dropdown-open .mp-dropdown-content,
+  .mp-dropdown-content a {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  /* Force dropdown items to always be visible */
+  .mp-dropdown-content {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}
+
+/* Ensure backdrop stays under dropdown */
+.mp-dropdown-content {
+  z-index: 10 !important;
+  background-color: rgba(244, 241, 234, 0.9) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}

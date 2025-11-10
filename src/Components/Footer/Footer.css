@@ -1,0 +1,215 @@
+/*
+====================================================================================
+--- "MASTERPIECE" FULL-WIDTH FOOTER STYLES (FINAL & FIXED) ---
+====================================================================================
+*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap');
+
+:root {
+  --color-elegant-bg: #f4f1ea;
+  --color-elegant-text-dark: #252525;
+  --color-elegant-text-light: #6e6e6e;
+  --color-elegant-accent: #a4826d;
+  --color-elegant-bg-alt: #ffffff;
+  --color-elegant-border: #e0dace;
+  --font-elegant-body: 'Poppins', sans-serif;
+  --font-elegant-display: 'Playfair Display', serif;
+  --transition-fast: 0.4s ease;
+}
+
+.masterpiece-footer {
+    padding: 0; /* Changed for full-width design */
+    background-color: var(--color-elegant-bg);
+    font-family: var(--font-elegant-body);
+    color: var(--color-elegant-text-light);
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- THE FIX: Make the container full width --- */
+.mp-footer-container {
+    max-width: none; /* Remove max-width */
+    width: 100%;
+    margin: 0 auto;
+    /* Perspective is no longer needed */
+}
+
+/* --- THE FIX: The footer card is now stationary and has adjusted padding --- */
+.mp-footer-card {
+    background-color: var(--color-elegant-bg-alt);
+    border-top: 1px solid var(--color-elegant-border); /* Top border for separation */
+    border-bottom: 1px solid var(--color-elegant-border);
+    padding: 80px 8%; /* Use percentage padding for responsiveness */
+    position: relative;
+    /* All transform and transition properties have been removed */
+}
+
+/* The glow effect can be kept for a subtle background ambiance if desired, or removed */
+.mp-footer-card::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: 80%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle at center, var(--color-elegant-accent), transparent 70%);
+    filter: blur(100px);
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+/* --- Top Section with CTA --- */
+.mp-footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--color-elegant-border);
+    margin-bottom: 60px; /* Increased margin for better spacing */
+}
+.mp-footer-top h2 {
+    font-family: var(--font-elegant-display);
+    color: var(--color-elegant-text-dark);
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    line-height: 1.2;
+}
+.mp-footer-cta {
+    background-color: var(--color-elegant-accent);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.mp-footer-cta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px -5px rgba(164, 130, 109, 0.4);
+}
+
+/* --- Main Content Grid --- */
+.mp-footer-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+.mp-footer-column h3 {
+    font-family: var(--font-elegant-display);
+    color: var(--color-elegant-text-dark);
+    font-size: 1.25rem;
+    margin-bottom: 24px;
+}
+
+/* Brand Column */
+.mp-footer-column.brand .mp-footer-logo {
+    display: flex;
+    align-items: center;
+    color: var(--color-elegant-text-dark);
+    text-decoration: none;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+.mp-footer-column.brand img {
+   
+    height: 35px;
+    width: auto;
+    color: var(--color-elegant-accent);
+}
+.mp-footer-column.brand span {
+    font-family: var(--font-elegant-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+.mp-footer-column.brand p {
+    max-width: 250px;
+    line-height: 1.7;
+}
+
+/* Links Column */
+.mp-footer-column.links ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+.mp-footer-column.links a {
+    color: var(--color-elegant-text-light);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+.mp-footer-column.links a:hover { color: var(--color-elegant-accent); }
+
+/* Contact Column */
+.mp-footer-column.contact p { line-height: 1.8; margin-bottom: 16px; }
+.mp-footer-column.contact a {
+    color: var(--color-elegant-accent);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Social Column */
+.mp-social-icons { display: flex; gap: 16px; }
+.mp-social-icons a {
+    width: 45px; height: 45px;
+    border: 1px solid var(--color-elegant-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-elegant-text-light);
+    text-decoration: none;
+    font-family: var(--font-elegant-display);
+    font-style: italic;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, color 0.3s ease, background-color 0.3s ease;
+}
+.mp-social-icons a:hover {
+    transform: translateY(-4px);
+    background-color: var(--color-elegant-accent);
+    color: white;
+    border-color: var(--color-elegant-accent);
+}
+
+/* --- Bottom Bar --- */
+.mp-footer-bottom {
+    padding-top: 32px;
+    border-top: 1px solid var(--color-elegant-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+.mp-bottom-links { display: flex; gap: 24px; }
+.mp-bottom-links a {
+    color: var(--color-elegant-text-light);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+.mp-bottom-links a:hover { color: var(--color-elegant-accent); }
+
+/*
+====================================================================================
+--- RESPONSIVE DESIGN FOR ALL DEVICES ---
+====================================================================================
+*/
+@media (max-width: 992px) {
+    .mp-footer-main {
+        grid-template-columns: 1fr 1fr;
+    }
+    .mp-footer-column.brand {
+        grid-column: 1 / -1;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .mp-footer-card { padding: 60px 5%; }
+    .mp-footer-top { flex-direction: column; text-align: center; gap: 24px; }
+    .mp-footer-main { grid-template-columns: 1fr; text-align: center; }
+    .mp-footer-column.brand p { margin: 0 auto; }
+    .mp-social-icons { justify-content: center; }
+    .mp-footer-bottom { flex-direction: column; gap: 20px; }
+}
+
+@media (max-width: 480px) {
+    .mp-footer-card { padding: 50px 5%; }
+    .mp-footer-top h2 { font-size: 1.8rem; }
+}

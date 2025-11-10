@@ -1,0 +1,399 @@
+import React from 'react';
+import { useState, useRef, useEffect } from 'react';
+import './Homet.css';
+
+// ===================================================================================
+// UTILITY HOOK: For scroll-triggered animations (Intersection Observer)
+// ===================================================================================
+const useScrollAnimation = (options) => {
+  const elementRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        observer.unobserve(entry.target);
+      }
+    }, options);
+
+    const currentElement = elementRef.current;
+    if (currentElement) { observer.observe(currentElement); }
+    return () => { if (currentElement) { observer.unobserve(currentElement); } };
+  }, [elementRef, options]);
+
+  return [elementRef, isVisible];
+};
+
+// ===================================================================================
+// INDIVIDUAL COMPONENTS FOR NEW SECTIONS
+// ===================================================================================
+
+const ServiceCard = ({ icon, title, description, delay }) => {
+    const cardRef = useRef(null);
+    useEffect(() => {
+        const card = cardRef.current;
+        const handleMouseMove = (e) => {
+            if (!card) return;
+            const { left, top, width, height } = card.getBoundingClientRect();
+            const x = e.clientX - left - width / 2;
+            const y = e.clientY - top - height / 2;
+            card.style.transform = `perspective(1000px) rotateX(${-y / 30}deg) rotateY(${x / 30}deg)`;
+            card.style.setProperty('--mouse-x', `${x + width / 2}px`);
+            card.style.setProperty('--mouse-y', `${y + height / 2}px`);
+        };
+        const handleMouseLeave = () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+        };
+        card.addEventListener('mousemove', handleMouseMove);
+        card.addEventListener('mouseleave', handleMouseLeave);
+        return () => {
+            card.removeEventListener('mousemove', handleMouseMove);
+            card.removeEventListener('mouseleave', handleMouseLeave);
+        };
+    }, []);
+
+    return (
+        <a href="/services" ref={cardRef} className="hp2-service-card" style={{ transitionDelay: `${delay * 150}ms` }}>
+            <div className="hp2-card-glow"></div>
+            <div className="hp2-service-icon">{icon}</div>
+            <h3>{title}</h3>
+            <p>{description}</p>
+        </a>
+    );
+};
+
+// ===================================================================================
+// THE "MASTERPIECE V2" HOMEPAGE COMPONENT
+// ===================================================================================
+const HomepageV2 = () => {
+  // --- STATE AND DATA ---
+  const servicesData = [
+    { icon: "🎨", title: "Brand Identity", description: "Crafting unique visual systems that tell your story." },
+    { icon: "💻", title: "Web Development", description: "Building high-performance, beautiful websites." },
+    { icon: "📈", title: "Digital Marketing", description: "Elevating your presence with data-driven strategies." },
+    { icon: "🛒", title: "E-commerce", description: "Creating seamless shopping experiences that drive sales." }
+  ];
+
+  const projectsData = [
+    { title: "Orion Industries", category: "Brand Identity & Web", image: "https://images.pexels.com/photos/169573/pexels-photo-169573.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+    { title: "Zenith Footwear", category: "E-commerce", image: "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+    { title: "Apex Logistics", category: "Web Application", image: "https://images.pexels.com/photos/4483610/pexels-photo-4483610.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+  ];
+
+  const testimonial = {
+      quote: "Their work is a masterclass in digital elegance. They transformed our vision into a stunning reality, exceeding all expectations.",
+      author: "Eleanor Vance, CEO of Orion"
+  };
+
+  // --- ANIMATION HOOKS ---
+  const [servicesRef, isServicesVisible] = useScrollAnimation({ threshold: 0.15 });
+  const [projectsRef, isProjectsVisible] = useScrollAnimation({ threshold: 0.1 });
+  const [testimonialsRef, isTestimonialsVisible] = useScrollAnimation({ threshold: 0.4 });
+  const [kineticRef, isKineticVisible] = useScrollAnimation({ threshold: 0.5 });
+  const [ctaRef, isCtaVisible] = useScrollAnimation({ threshold: 0.1 });
+  
+  return (
+    <div className="homepage-v2">
+      {/* --- Section 1: Cinematic Hero (Unchanged) --- */}
+      <header className="hp-hero-section">
+        <div className="hp-hero-background-image"></div>
+        <div className="hp-hero-content">
+          <h1 className="hp-main-title">
+            <span className="line"><span>Crafting Digital</span></span>
+            <span className="line"><span>Excellence.</span></span>
+          </h1>
+          <p className="hp-hero-subtitle">
+            An award-winning creative agency dedicated to building timeless brands and unforgettable digital experiences.
+          </p>
+        </div>
+        <div className="hp-scroll-indicator">Scroll to explore</div>
+      </header>
+
+      <main className="hp-main-content">
+        {/* --- NEW Section 2: Kinetic Typography Intro --- */}
+        <section ref={kineticRef} className={`hp2-kinetic-section ${isKineticVisible ? 'is-visible' : ''}`}>
+            <div className="hp2-container">
+                <h2 className="hp2-kinetic-text">
+                    We Create <span className="word-1">Branding.</span> <span className="word-2">Websites.</span> <span className="word-3">Experiences.</span> That Inspire Action.
+                </h2>
+            </div>
+        </section>
+
+        {/* --- NEW Section 3: Interactive Magnetic Grid (Services) --- */}
+        <section ref={servicesRef} className={`hp2-services-section ${isServicesVisible ? 'is-visible' : ''}`}>
+          <div className="hp2-container">
+            <div className="hp2-section-header">
+              <p className="hp2-subtitle">What We Do</p>
+              <h2 className="hp2-section-title">Our Expertise</h2>
+            </div>
+            <div className="hp2-services-grid">
+              {servicesData.map((service, index) => (
+                <ServiceCard key={index} {...service} delay={index} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* --- NEW Section 4: 3D Parallax Projects --- */}
+        <section ref={projectsRef} className={`hp2-projects-section ${isProjectsVisible ? 'is-visible' : ''}`}>
+          <div className="hp2-container">
+            <div className="hp2-section-header">
+              <p className="hp2-subtitle">Our Portfolio</p>
+              <h2 className="hp2-section-title">Featured Work</h2>
+            </div>
+            <div className="hp2-projects-grid">
+              {projectsData.map((project, index) => (
+                <a href="#project" key={index} className="hp2-project-card" style={{ transitionDelay: `${index * 150}ms` }}>
+                  <div className="hp2-project-image" style={{backgroundImage: `url(${project.image})`}}></div>
+                  <div className="hp2-project-info">
+                    <h3>{project.title}</h3>
+                    <p>{project.category}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* --- NEW Section 5: Quote Reveal Testimonial --- */}
+        <section ref={testimonialsRef} className={`hp2-testimonials-section ${isTestimonialsVisible ? 'is-visible' : ''}`}>
+          <div className="hp2-container">
+            <div className="hp2-testimonial-wrapper">
+              <div className="hp2-quote-mark">“</div>
+              <blockquote>{testimonial.quote}</blockquote>
+              <cite>– {testimonial.author}</cite>
+            </div>
+          </div>
+        </section>
+
+        {/* --- NEW Section 6: Infinite Scroll CTA --- */}
+        <section ref={ctaRef} className={`hp2-cta-section ${isCtaVisible ? 'is-visible' : ''}`}>
+          <div className="hp2-ethereal-gradient-bg"></div>
+          <div className="hp2-cta-marquee">
+            <div className="hp2-cta-track">
+                <span>Let's Talk</span><span>Let's Talk</span><span>Let's Talk</span><span>Let's Talk</span>
+                <span>Let's Talk</span><span>Let's Talk</span><span>Let's Talk</span><span>Let's Talk</span>
+            </div>
+          </div>
+          <a href="/contact" className="hp2-cta-button">Start a Project</a>
+        </section>
+      </main>
+    </div>
+  );
+};
+
+export default HomepageV2;
+
+
+/*
+====================================================================================
+--- "MASTERPIECE V2" HOMEPAGE STYLES ---
+====================================================================================
+*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap');
+
+:root {
+  --color-elegant-bg: #f4f1ea;
+  --color-elegant-text-dark: #252525;
+  --color-elegant-text-light: #6e6e6e;
+  --color-elegant-accent: #a4826d;
+  --color-elegant-bg-alt: #ffffff;
+  --color-elegant-border: #e0dace;
+  --font-elegant-body: 'Poppins', sans-serif;
+  --font-elegant-display: 'Playfair Display', serif;
+  --transition-slow: 1s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.4s ease;
+}
+
+.homepage-v2 {
+  background-color: var(--color-elegant-bg-alt);
+  color: var(--color-elegant-text-light);
+  font-family: var(--font-elegant-body);
+  overflow-x: hidden;
+}
+
+/* --- Section 1: Cinematic Hero (UNCHANGED) --- */
+.hp-hero-section { height: 100vh; position: sticky; top: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; z-index: 1; }
+.hp-hero-background-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.pexels.com/photos/1563356/pexels-photo-1563356.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); background-size: cover; background-position: center; clip-path: inset(0% 0% 0% 0%); animation: hero-reveal 1.5s cubic-bezier(0.77, 0, 0.175, 1) 0.5s both; }
+@keyframes hero-reveal { from { clip-path: inset(48% 48% 48% 48%); } to { clip-path: inset(0% 0% 0% 0%); } }
+.hp-hero-content { position: relative; z-index: 2; color: white; padding: 0 20px; }
+.hp-main-title { font-family: var(--font-elegant-display); font-size: clamp(3.5rem, 8vw, 7rem); line-height: 1.1; text-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+.hp-main-title .line { display: block; overflow: hidden; }
+.hp-main-title .line span { display: block; transform: translateY(110%); animation: reveal-line 1.2s var(--transition-slow) forwards; }
+.hp-main-title .line:nth-child(1) span { animation-delay: 1s; }
+.hp-main-title .line:nth-child(2) span { animation-delay: 1.2s; }
+@keyframes reveal-line { to { transform: translateY(0); } }
+.hp-hero-subtitle { font-size: clamp(1rem, 2.5vw, 1.2rem); max-width: 600px; margin: 24px auto 0; line-height: 1.8; opacity: 0; transform: translateY(20px); animation: fade-in-up 1s ease 1.5s forwards; }
+.hp-scroll-indicator { position: absolute; bottom: 40px; font-weight: 600; letter-spacing: 1px; opacity: 0; animation: fade-in-up 1s ease 2s forwards; }
+@keyframes fade-in-up { to { opacity: 1; transform: translateY(0); } }
+.hp-main-content { position: relative; z-index: 2; background-color: var(--color-elegant-bg-alt); padding-top: 10vh; }
+
+/* --- General Section Styles --- */
+.hp2-container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
+.hp2-section-header { text-align: center; margin-bottom: 80px; }
+.hp2-subtitle { color: var(--color-elegant-accent); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; opacity: 0; transform: translateY(20px); transition: 0.8s var(--transition-slow); }
+.hp2-section-title { font-family: var(--font-elegant-display); color: var(--color-elegant-text-dark); font-size: clamp(2.5rem, 5vw, 3.5rem); line-height: 1.2; opacity: 0; transform: translateY(20px); transition: 0.8s var(--transition-slow) 0.2s; }
+.is-visible .hp2-subtitle, .is-visible .hp2-section-title { opacity: 1; transform: translateY(0); }
+
+/* --- Section 2: Kinetic Typography --- */
+.hp2-kinetic-section { padding: 120px 0; text-align: center; }
+.hp2-kinetic-text {
+    font-family: var(--font-elegant-display);
+    color: var(--color-elegant-text-dark);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.2;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.hp2-kinetic-text span {
+    display: inline-block;
+    color: var(--color-elegant-accent);
+    opacity: 0;
+    transform: translateY(50px) rotate(5deg);
+    transition: 1s var(--transition-slow);
+}
+.hp2-kinetic-section.is-visible .word-1 { opacity: 1; transform: translateY(0) rotate(0); transition-delay: 0.2s; }
+.hp2-kinetic-section.is-visible .word-2 { opacity: 1; transform: translateY(0) rotate(0); transition-delay: 0.4s; }
+.hp2-kinetic-section.is-visible .word-3 { opacity: 1; transform: translateY(0) rotate(0); transition-delay: 0.6s; }
+
+/* --- Section 3: Interactive Magnetic Grid --- */
+.hp2-services-section { padding: 120px 0; background-color: var(--color-elegant-bg); }
+.hp2-services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; perspective: 1500px; }
+.hp2-service-card {
+    background-color: var(--color-elegant-bg-alt);
+    border: 1px solid var(--color-elegant-border);
+    border-radius: 16px; padding: 40px; text-decoration: none;
+    color: var(--color-elegant-text-light); position: relative;
+    opacity: 0; transform: translateY(50px);
+    transition: 1s var(--transition-slow), transform 0.1s linear;
+}
+.is-visible .hp2-service-card { opacity: 1; transform: translateY(0); }
+.hp2-card-glow {
+    position: absolute; top: var(--mouse-y); left: var(--mouse-x);
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(164, 130, 109, 0.1), transparent 70%);
+    transform: translate(-50%, -50%);
+    opacity: 0; transition: opacity 0.4s ease;
+}
+.hp2-service-card:hover .hp2-card-glow { opacity: 1; }
+.hp2-service-icon { font-size: 2.5rem; margin-bottom: 24px; }
+.hp2-service-card h3 { font-family: var(--font-elegant-display); color: var(--color-elegant-text-dark); font-size: 1.5rem; margin-bottom: 16px; }
+
+/* --- Section 4: 3D Parallax Projects --- */
+.hp2-projects-section { padding: 120px 0; }
+.hp2-projects-grid {
+    display: grid; grid-template-columns: 1fr; gap: 120px;
+    margin-top: 80px;
+}
+.hp2-project-card {
+    display: block; text-decoration: none;
+    opacity: 0; transform: translateY(50px);
+    transition: 1s var(--transition-slow);
+    perspective: 1500px;
+}
+.is-visible .hp2-project-card { opacity: 1; transform: translateY(0); }
+.hp2-project-image {
+    height: 600px; border-radius: 16px;
+    background-size: cover; background-position: center;
+    transition: transform 0.6s var(--transition-slow);
+    transform-style: preserve-3d;
+}
+.hp2-project-card:hover .hp2-project-image {
+    transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.05);
+}
+.hp2-project-info { padding: 24px 0; transition: transform 0.6s var(--transition-slow); }
+.hp2-project-card:hover .hp2-project-info {
+    transform: translateZ(50px);
+}
+.hp2-project-info h3 { font-family: var(--font-elegant-display); color: var(--color-elegant-text-dark); font-size: 2rem; }
+.hp2-project-info p { color: var(--color-elegant-accent); font-weight: 600; margin-top: 4px; }
+
+/* --- Section 5: Quote Reveal Testimonial --- */
+.hp2-testimonials-section { padding: 120px 0; background-color: var(--color-elegant-bg); }
+.hp2-testimonial-wrapper {
+    position: relative; max-width: 800px; margin: 0 auto;
+    text-align: center;
+}
+.hp2-quote-mark {
+    font-family: var(--font-elegant-display);
+    font-size: 12rem;
+    color: var(--color-elegant-border);
+    position: absolute;
+    top: -60px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+    opacity: 0;
+    transition: 1.2s var(--transition-slow);
+}
+.hp2-testimonials-section.is-visible .hp2-quote-mark { opacity: 1; }
+.hp2-testimonial-wrapper blockquote, .hp2-testimonial-wrapper cite {
+    position: relative; z-index: 1;
+    opacity: 0; transform: translateY(30px);
+    transition: 1.2s var(--transition-slow);
+}
+.hp2-testimonials-section.is-visible blockquote { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+.hp2-testimonials-section.is-visible cite { opacity: 1; transform: translateY(0); transition-delay: 0.5s; }
+.hp2-testimonial-wrapper blockquote {
+    font-family: var(--font-elegant-display);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--color-elegant-text-dark); line-height: 1.4;
+    margin-bottom: 32px;
+}
+.hp2-testimonial-wrapper cite { font-style: normal; font-weight: 600; }
+
+/* --- Section 6: Infinite Scroll CTA --- */
+.hp2-cta-section { padding: 120px 0; position: relative; overflow: hidden; }
+.hp2-ethereal-gradient-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: radial-gradient(at 20% 80%, hsla(30, 40%, 80%, 0.3), transparent 50%), radial-gradient(at 80% 10%, hsla(200, 40%, 80%, 0.3), transparent 50%); animation: move-gradient 20s linear infinite alternate; }
+@keyframes move-gradient { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+.hp2-cta-marquee {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150%;
+    z-index: 1;
+}
+.hp2-cta-track {
+    display: flex; width: max-content;
+    animation: marquee-cta 20s linear infinite;
+}
+.hp2-cta-track span {
+    font-family: var(--font-elegant-display);
+    font-size: clamp(5rem, 15vw, 12rem);
+    font-weight: 700;
+    color: var(--color-elegant-text-dark);
+    margin: 0 40px;
+    -webkit-text-stroke: 2px var(--color-elegant-border);
+    color: transparent;
+}
+@keyframes marquee-cta { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.hp2-cta-button {
+  position: relative; z-index: 2;
+  background-color: var(--color-elegant-accent);
+  color: white; padding: 24px 48px; border-radius: 50px;
+  text-decoration: none; font-weight: 600; font-size: 1.2rem;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: 0 10px 20px -10px var(--color-elegant-accent);
+}
+.hp2-cta-button:hover { transform: translateY(-5px); box-shadow: 0 15px 30px -10px var(--color-elegant-accent); }
+.hp2-cta-section .hp2-container { position: relative; z-index: 2; text-align: center; }
+
+/*
+====================================================================================
+--- RESPONSIVE DESIGN ---
+====================================================================================
+*/
+@media (max-width: 992px) {
+    .hp2-services-grid { grid-template-columns: 1fr 1fr; }
+    .hp2-project-image { height: 450px; }
+}
+@media (max-width: 768px) {
+    .homepage-v2 section { padding: 80px 0; }
+    .hp2-kinetic-text { font-size: 2.5rem; }
+    .hp2-services-grid { grid-template-columns: 1fr; }
+    .hp2-projects-grid { gap: 80px; }
+    .hp2-project-image { height: 400px; }
+}
+@media (min-width: 1921px) {
+    .hp2-container { max-width: 1600px; }
+    .hp2-section-title { font-size: 4.5rem; }
+}
