@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Import all your components
 import Navbar from './Components/Navbar/Navbar';
 import Home from './Components/Home/Home';
 import About from "./Components/About/About";
-import AboutUsPage from './Components/NewAboutus/About';
 import ServicesPage from './Components/Services/Services';
 import ContactPageAdvanced from './Components/ContactUs/Contact';
 import Footer from './Components/Footer/Footer';
